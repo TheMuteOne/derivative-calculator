@@ -5,13 +5,39 @@ import java.util.Map;
 public class parser {
 
     private ArrayList<String> terms = new ArrayList<String>();
+    private ArrayList<String> signs = new ArrayList<String>();
     private ArrayList<String> single = new ArrayList<String>();
     private Map<String, String> singleParsed = new HashMap<String, String>();
 
+    //takes whole expression and breaks into terms and signs
+    public ArrayList parseExpression(String input) {  //will take from reader.getInput, full parser
+       //bonk out the + and - s to add back on when printing
+        //do I store in an arraylist? with "" s in between for the terms?
 
-    public ArrayList yeet(String input) {  //will take from reader.getInput
-        //TODO: take input and convert it into single terms
+        input = input.replaceAll("\\s",""); // why is this line not running
+        //TODO figure out how the hell spaces are ruining my parser when i literally took them out already
+        //it works perfectly fine when I use non spaced input, but as soon as spaces are used it breaks
+        //why on earth, i take them out RIGHT HERE too
+        int inputchar;
+        for (inputchar = 0; inputchar < input.length(); inputchar++) {
+            if (input.charAt(inputchar) == '+' || input.charAt(inputchar) == '-') {
+                signs.add(String.valueOf(input.charAt(inputchar)));
+            }
+        }
 
+        //then go through as normal since front char is gotten
+        String[] termsFirst = input.split("[+-]");
+        for (String x : termsFirst) {
+            terms.add(x);
+        }
+        //print as test
+        for (String termHopefully : terms) {
+            System.out.print(termHopefully + " ");
+        }
+        System.out.println();
+        for (String signHopefully : signs) {
+            System.out.print(signHopefully + " ");
+        }
 
         return terms;
     }

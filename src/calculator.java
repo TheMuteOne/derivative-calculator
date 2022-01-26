@@ -14,7 +14,10 @@ public class calculator {  //this is the testing the logic stage do NOT judge th
         System.out.println("enter simple expression");
         String hg = scn.next();
         calculator c = new calculator();
-        c.SingleTermDer(hg);
+       // c.SingleTermDer(hg);
+        parser pp = new parser();
+        pp.parseExpression(hg);
+
     }
 
     public static boolean isItNumeric(String str) {  //works
@@ -23,7 +26,7 @@ public class calculator {  //this is the testing the logic stage do NOT judge th
         }
         try {
             double d = Double.parseDouble(str);
-        } catch (NumberFormatException nfe) {
+        } catch (NumberFormatException e) {
             return false;
         }
         return true;
